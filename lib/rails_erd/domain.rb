@@ -59,7 +59,7 @@ module RailsERD
 
     # Returns all relationships in your domain model.
     def relationships
-      @relationships ||= Relationship.from_associations(self, associations)
+      @relationships ||= Relationship.from_associations(self, associations).reject {|r| r.source.nil? or r.destination.nil? }
     end
 
     # Returns all specializations in your domain model.
